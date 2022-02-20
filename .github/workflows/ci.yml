@@ -43,11 +43,13 @@ jobs:
       - name: move to dbt proj dir
         run: |
           cd dbt_demo
-          #echo "${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD }}" > ./dbt-service-account.json
+          echo "$KEYFILE" > ./dbt-service-account.json
           #echo "++++++++++++++++++++++++"
           #cat ./dbt-service-account.json
           #echo "++++++++++++++++++++++++"
           dbt debug --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
+        env:
+          KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
       - name: find prof dir
         run: |
          echo $GITHUB_WORKSPACE
