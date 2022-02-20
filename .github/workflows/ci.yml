@@ -37,8 +37,8 @@ jobs:
           echo "$KEYFILE" > ./dbt-service-account.json
           cd dbt_demo
           dbt debug --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
-          dbt deps
-          dbt run
+          dbt deps --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
+          dbt run --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
         shell: bash
         env:
           KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
