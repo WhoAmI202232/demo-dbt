@@ -34,7 +34,7 @@ jobs:
       - name: move to dbt proj dir
         run: |
           cd dbt_demo
-          cat "${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD }}" > ./dbt-service-account.json
+          cat "${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD }}"| base64 > ./dbt-service-account.json
           dbt debug --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
       - name: find prof dir
         run: |
