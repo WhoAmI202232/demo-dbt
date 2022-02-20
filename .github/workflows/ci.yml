@@ -26,11 +26,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: find prof dir
         run: |
-         echo $HOME
+         echo $GITHUB_WORKSPACE
          echo ${{ secrets.DBT_PROFILES_DIR }}
-      - name: Install DBT
-        run: |
-          python -m pip install --upgrade pip  #${{ secrets.GITHUB_TOKEN }}
-          pip install dbt-core==1.0.0
-          pip install dbt-bigquery
-          pip install sqlfluff
+  
