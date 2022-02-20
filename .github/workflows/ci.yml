@@ -35,6 +35,7 @@ jobs:
       - name: Authenticate using service account
         run: |
           echo "$KEYFILE" > ./dbt-service-account.json
+          cd dbt_demo
           dbt debug --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
         shell: bash
         env:
