@@ -31,6 +31,12 @@ jobs:
           pip install dbt-core==1.0.0
           pip install dbt-bigquery
           pip install sqlfluff
+      
+      - name: Authenticate using service account
+        run: 'echo "$KEYFILE" > ./dbt-service-account.json'
+        shell: bash
+        env:
+          KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
       - name: move to dbt proj dir
         run: |
           cd dbt_demo
