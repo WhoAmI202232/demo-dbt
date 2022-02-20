@@ -33,7 +33,9 @@ jobs:
           pip install sqlfluff
       
       - name: Authenticate using service account
-        run: 'echo "$KEYFILE" > ./dbt-service-account.json'
+        run: |
+          echo "$KEYFILE" > ./dbt-service-account.json
+          dbt debug --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
         shell: bash
         env:
           KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
