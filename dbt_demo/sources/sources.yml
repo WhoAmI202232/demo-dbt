@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: demo1
+    database: learn-dbt-340510
+    #freshness: # default freshness
+      #warn_after: {count: 12, period: day}
+      #error_after: {count: 24, period: day}
+    #loaded_at_field: _sdc_received_at
+
+    tables:
+      - name: crim
+        #freshness: # make this a little more strict
+        #  warn_after: {count: 3, period: day}
+        #  error_after: {count: 3, period: day}
+        columns:
+          - name: unique_key
+            description: Primary key of the crime table
+            tests:
+              - unique
+              - not_null

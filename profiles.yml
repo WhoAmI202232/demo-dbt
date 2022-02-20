@@ -1,0 +1,35 @@
+config:
+  send_anonymous_usage_stats: false
+  use_colors: true
+  warn_error: true
+  write_json: true
+  debug: false
+  version_check: true
+  fail_fast: true
+dbt_demo:
+  outputs:
+    dev:
+      dataset: marketing_dev
+      fixed_retries: 1
+      # Get this key from Head of Data or CDO
+      keyfile: "{{ env_var('DEV_SERVICE_ACCOUNT_KEY_LOC') }}"
+      location: US
+      method: service-account
+      priority: interactive
+      project: dazzling-botany-341914
+      threads: 1
+      timeout_seconds: 300
+      type: bigquery
+    prod:
+      dataset: marketing
+      fixed_retries: 1
+      # Get this key from Head of Data or CDO
+      keyfile: /workspaces/dbt_proj/prod.json
+      location: US
+      method: service-account
+      priority: interactive
+      project: principal-storm-341914
+      threads: 1
+      timeout_seconds: 300
+      type: bigquery
+  target: dev
