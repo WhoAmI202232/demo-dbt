@@ -44,12 +44,13 @@ jobs:
           KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
       - name: Lint with sqlfluff
         run: |
+          dbt run --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
           #pip install sqlfluff
-          #sqlfluff lint
+          sqlfluff lint models
 
           # Linting only modified models
           #git fetch origin main:main
-          git diff main --name-only --diff-filter=d | egrep '^models/.*sql$$' | xargs -r sqlfluff lint
+          #git diff main --name-only --diff-filter=d | egrep '^models/.*sql$$' | xargs -r sqlfluff lint
 
       - name: find prof dir
         run: |
