@@ -33,7 +33,7 @@ jobs:
       - name: move to dbt proj dir
         run: |
           cd dbt_demo
-          dbt debug --profiles-dir $DBT_PROFILES_DIR
+          dbt debug --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
       - name: find prof dir
         run: |
          echo $GITHUB_WORKSPACE
