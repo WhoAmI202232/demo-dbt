@@ -44,6 +44,7 @@ jobs:
           KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
       - name: Lint with sqlfluff
         run: |
+          cd dbt_demo
           dbt run --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
           #pip install sqlfluff
           sqlfluff lint models
