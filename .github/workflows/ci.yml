@@ -27,5 +27,6 @@ jobs:
       - name: find prof dir
         run: |
          echo $GITHUB_WORKSPACE
+         ls $GITHUB_WORKSPACE
          echo ${{ secrets.DBT_PROFILES_DIR }}
   
