@@ -24,7 +24,7 @@ dbt_demo:
       dataset: marketing
       fixed_retries: 1
       # Get this key from Head of Data or CDO
-      keyfile: /workspaces/dbt_proj/prod.json
+      keyfile: "{{ env_var('DBT_GOOGLE_BIGQUERY_KEYFILE_PROD') }}"
       location: US
       method: service-account
       priority: interactive
@@ -32,4 +32,4 @@ dbt_demo:
       threads: 1
       timeout_seconds: 300
       type: bigquery
-  target: dev
+  target: prod
