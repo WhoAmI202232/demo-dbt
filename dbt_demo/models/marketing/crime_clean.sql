@@ -1,3 +1,3 @@
 select * from
-{{source('demo1','crim')}}
+  {{ source('demo1','crim' )}}
 where unique_key is not null
