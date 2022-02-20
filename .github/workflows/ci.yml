@@ -42,16 +42,15 @@ jobs:
         shell: bash
         env:
           KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
-      - name: move to dbt proj dir
+      - name: Lint with sqlfluff
         run: |
-          cd dbt_demo
-          echo "$KEYFILE" > ./dbt-service-account.json
-          #echo "++++++++++++++++++++++++"
-          #cat ./dbt-service-account.json
-          #echo "++++++++++++++++++++++++"
-          dbt debug --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
-        env:
-          KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
+          pip install sqlfluff
+          sqlfluff lint
+
+          # Linting only modified models
+          git fetch origin main:main
+          git diff main --name-only --diff-filter=d | egrep '^models/.*sql$$' | xargs -r sqlfluff lint
+
       - name: find prof dir
         run: |
          echo $GITHUB_WORKSPACE
