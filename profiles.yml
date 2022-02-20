@@ -12,7 +12,7 @@ dbt_demo:
       dataset: marketing_dev
       fixed_retries: 1
       # Get this key from Head of Data or CDO
-      keyfile: "{{ env_var('DEV_SERVICE_ACCOUNT_KEY_LOC') }}"
+      keyfile: ${{ secrets.DEV_PROD_SERVICE_ACCOUNT_KEY }}
       location: US
       method: service-account
       priority: interactive
