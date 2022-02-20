@@ -48,7 +48,7 @@ jobs:
           #sqlfluff lint
 
           # Linting only modified models
-          git fetch origin main:main
+          #git fetch origin main:main
           git diff main --name-only --diff-filter=d | egrep '^models/.*sql$$' | xargs -r sqlfluff lint
 
       - name: find prof dir
