@@ -57,6 +57,7 @@ jobs:
           
       - name: Download Manifest
         run: |
+          pip install google-api-python-client
           pip install ZDrive
           python gdrive_downloader.py
           ls ./
