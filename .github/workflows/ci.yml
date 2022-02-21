@@ -48,7 +48,7 @@ jobs:
         
         with:
           target: target/manifest.json
-          credentials: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
+          credentials: ${{secrets.GDRIVE_CRED_BASE64}}
           folder: ${{secrets.DRIVE_FOLDER_ID}}
         
       - name: find prof dir
