@@ -54,6 +54,13 @@ jobs:
           target: dbt_demo/target/manifest.json
           credentials: ${{secrets.GDRIVE_CRED_BASE64}}
           folder: ${{secrets.DRIVE_FOLDER_ID}}
+          
+      - name: Setup gdrive
+        uses: AnimMouse/setup-gdrive@v2
+        with:
+          service_account: ${{ secrets.GDRIVE_CRED_BASE64 }}
+      
+      - run: gdrive --service-account gdrive.json about
         
 
   
