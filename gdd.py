@@ -7,7 +7,11 @@ from os import getenv
 
 # google drive api setup snippet
 scopes = ['https://www.googleapis.com/auth/drive']
-service_account_file = loads('dbt-service-account.json')
+
+with open('dbt-service-account.json') as f:
+  lnes = f.readlines()
+sc_creds = ''.join(lnes)
+service_account_file = loads(sc_creds)
 credentials = service_account.Credentials.from_service_account_info(
               service_account_file, scopes=scopes)
 drive = googleapiclient.discovery.build('drive', 'v3', credentials=credentials)
