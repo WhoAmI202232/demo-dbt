@@ -57,11 +57,9 @@ jobs:
           
       - name: Download Manifest
         run: |
-          pip install google-api-python-client
-          pip install ZDrive 
+          pip install google-api-python-client 
           ls 
-          cp dbt-service-account.json credentials.json
-          python gdrive_downloader.py
+          python gdd.py
           ls ./
         
 
