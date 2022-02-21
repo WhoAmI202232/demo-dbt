@@ -56,7 +56,7 @@ jobs:
           folder: ${{secrets.DRIVE_FOLDER_ID}}
           
       - name: Download Manifest
-      - run: |
+        run: |
           pip install ZDrive
           python gdrive_downloader.py
           ls ./
