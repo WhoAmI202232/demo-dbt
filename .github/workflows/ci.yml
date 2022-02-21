@@ -58,7 +58,7 @@ jobs:
       - name: Setup gdrive
         uses: AnimMouse/setup-gdrive@v2
         with:
-          service_account: ${{ secrets.GDRIVE_CRED_BASE64 }}
+          service_account: ${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD }}
       
       - run: gdrive --service-account gdrive.json about
         
