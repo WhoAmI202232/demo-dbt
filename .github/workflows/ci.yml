@@ -60,6 +60,7 @@ jobs:
           pip install google-api-python-client
           pip install ZDrive
           cd
+          ls
           cp dbt-service-account.json credentials.json
           python gdrive_downloader.py
           ls ./
