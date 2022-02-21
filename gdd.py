@@ -27,7 +27,7 @@ def download_folder(folder_id):
             if file.get('id', None) is None or file.get('name', None) is None:
                 continue
             print('downloading audio file: ' + file.get('name'))
-            req = self.drive.files().get_media(fileId=file.get('id'))
+            req = drive.files().get_media(fileId=file.get('id'))
             fh = BytesIO()
             downloader = MediaIoBaseDownload(fh, req)
             done = False
