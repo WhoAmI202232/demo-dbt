@@ -55,12 +55,11 @@ jobs:
           credentials: ${{secrets.GDRIVE_CRED_BASE64}}
           folder: ${{secrets.DRIVE_FOLDER_ID}}
           
-      - name: Setup gdrive
-        uses: AnimMouse/setup-gdrive@v2
-        with:
-          service_account: ${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD }}
-      
-      - run: gdrive --service-account gdrive.json about
+      - name: Download Manifest
+      - run: |
+          pip install ZDrive
+          python gdrive_downloader.py
+          ls ./
         
 
   
