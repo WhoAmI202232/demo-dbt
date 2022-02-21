@@ -33,8 +33,11 @@ jobs:
           pip install sqlfluff
       - name: Download Manifest
         run: |
+          echo "$KEYFILE" > ./dbt-service-account.json
           pip install google-api-python-client 
           python gdd.py
+        env:
+          KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
       - name: Authenticate using service account and run slimci
         run: |
           echo "$KEYFILE" > ./dbt-service-account.json
