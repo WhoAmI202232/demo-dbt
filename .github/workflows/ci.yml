@@ -42,17 +42,15 @@ jobs:
         shell: bash
         env:
           KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
-      - name: Lint with sqlfluff
-        run: |
-          cd dbt_demo
-          dbt run --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
-          #pip install sqlfluff
-          sqlfluff lint models
-
-          # Linting only modified models
-          #git fetch origin main:main
-          #git diff main --name-only --diff-filter=d | egrep '^models/.*sql$$' | xargs -r sqlfluff lint
-
+      
+      - name: Upload README.md to Google Drive
+        uses: Jodebu/upload-to-drive@master
+        
+        with:
+          target: target/manifest.json
+          credentials: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
+          folder: ${{secrets.DRIVE_FOLDER_ID}}
+        
       - name: find prof dir
         run: |
          echo $GITHUB_WORKSPACE
