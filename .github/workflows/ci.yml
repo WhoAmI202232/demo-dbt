@@ -31,14 +31,18 @@ jobs:
           pip install dbt-core==1.0.0
           pip install dbt-bigquery
           pip install sqlfluff
-      
-      - name: Authenticate using service account
+      - name: Download Manifest
+        run: |
+          pip install google-api-python-client 
+          python gdd.py
+      - name: Authenticate using service account and run slimci
         run: |
           echo "$KEYFILE" > ./dbt-service-account.json
           cd dbt_demo
           dbt debug --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
           dbt deps --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
-          dbt run --profiles-dir  ${{ secrets.DBT_PROFILES_DIR }}
+          dbt run --models state:modified --state ../ --profiles-dir ${{ secrets.DBT_PROFILES_DIR }}
+          dbt test --models state:modified --state ../ --profiles-dir ${{ secrets.DBT_PROFILES_DIR }}
         shell: bash
         env:
           KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
@@ -55,12 +59,7 @@ jobs:
           credentials: ${{secrets.GDRIVE_CRED_BASE64}}
           folder: ${{secrets.DRIVE_FOLDER_ID}}
           
-      - name: Download Manifest
-        run: |
-          pip install google-api-python-client 
-          ls 
-          python gdd.py
-          ls ./
+      
         
 
   
