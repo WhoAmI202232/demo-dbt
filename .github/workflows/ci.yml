@@ -51,7 +51,7 @@ jobs:
       - name: Upload README.md to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
-          target: target/manifest.json
+          target: ${{ secrets.DBT_PROFILES_DIR }}/target/manifest.json
           credentials: ${{secrets.GDRIVE_CRED_BASE64}}
           folder: ${{secrets.DRIVE_FOLDER_ID}}
         
