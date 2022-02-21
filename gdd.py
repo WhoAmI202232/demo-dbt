@@ -14,8 +14,7 @@ drive = googleapiclient.discovery.build('drive', 'v3', credentials=credentials)
 
 
 def download_folder(folder_id):
-    files = drive.files().list(q="'{}' in parents".format(folder_id))
-            .execute().get('files', [])
+    files = drive.files().list(q="'{}' in parents".format(folder_id)).execute().get('files', [])
     if files is []:
         print('google drive api returned empty folder, check api or permissions')
     else:
