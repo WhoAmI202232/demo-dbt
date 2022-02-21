@@ -42,7 +42,12 @@ jobs:
         shell: bash
         env:
           KEYFILE: ${{secrets.DBT_GOOGLE_BIGQUERY_KEYFILE_PROD}}
-      
+      - name: find prof dir
+        run: |
+         ls .
+         echo $GITHUB_WORKSPACE
+         ls $GITHUB_WORKSPACE
+         echo ${{ secrets.DBT_PROFILES_DIR }}
       - name: Upload README.md to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
@@ -50,10 +55,5 @@ jobs:
           credentials: ${{secrets.GDRIVE_CRED_BASE64}}
           folder: ${{secrets.DRIVE_FOLDER_ID}}
         
-      - name: find prof dir
-        run: |
-         ls .
-         echo $GITHUB_WORKSPACE
-         ls $GITHUB_WORKSPACE
-         echo ${{ secrets.DBT_PROFILES_DIR }}
+
   
