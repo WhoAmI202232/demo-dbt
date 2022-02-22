@@ -1,9 +1,0 @@
-version: 2
-
-models:
-  - name: crime_clean
-    columns:
-      - name: unique_key
-        tests:
-            - unique
-            - not_null
