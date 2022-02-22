@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: crime_clean
+  - name: crime_clean1
     columns:
       - name: unique_key
         tests:
